@@ -3,7 +3,13 @@
     "description": "authorize.net package for Kerigan Marketing Associates",
     "type": "library",
     "require": {
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "authorizenet/authorizenet": "^2.0"
+    },
+    "autoload": {
+        "psr-4" : {
+            "CyberdelicDigital\\AuthorizeNet\\" : "src"
+        }
     },
     "license": "MIT",
     "authors": [
