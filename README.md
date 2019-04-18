@@ -14,7 +14,7 @@ A simple wrapper for the Authorize.Net PHP SDK
 
   * Transaction Key from your Authorize.Net Merchant Dashboard
 
-#### Optional
+#### Recommended
 * `define('AUTHORIZENET_LOG_FILE', 'authorizenet_log');`
 
   * Relative path to the file where you would like to keep transaction logs (for debugging purposes)
