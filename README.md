@@ -13,4 +13,4 @@ A simple wrapper for the Authorize.Net PHP SDK
 
 * `define('AUTHORIZENET_TRANSACTION_KEY', 'YOUR_TRANSACTION_KEY');`
     * Transaction Key from your Authorize.Net Merchant Dashboard
-___
+
