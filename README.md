@@ -7,11 +7,9 @@ A simple wrapper for the Authorize.Net PHP SDK
 ### **Environment/Global Variables**
 #### Required
 * `define('AUTHORIZENET_LOGIN_ID', 'YOUR_LOGIN_ID');`
-
   * Login ID from your Authorize.Net Merchant Dashboard
 
 * `define('AUTHORIZENET_TRANSACTION_KEY', 'YOUR_TRANSACTION_KEY');`
-
   * Transaction Key from your Authorize.Net Merchant Dashboard
 
 #### Optional
