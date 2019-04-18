@@ -1,0 +1,15 @@
+{
+    "name": "doomtickle/authorizenet",
+    "description": "authorize.net package for Kerigan Marketing Associates",
+    "type": "library",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Daron Adkins",
+            "email": "daron.adkins@gmail.com"
+        }
+    ]
+}
