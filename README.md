@@ -1,6 +1,6 @@
 # Authorize.Net Transactions for PHP
 A simple wrapper for the Authorize.Net PHP SDK
-___
+
 ## **Installation**
 `composer require CyberdelicDigital/authorizenet`
 ___
