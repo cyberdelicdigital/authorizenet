@@ -30,7 +30,6 @@ This package accepts a payload of structured data (JSON) and returns the respons
 | expirationDate | yes | String | Format: `YYYY-mm`
 | cardCode | yes | String | Also known as CVV
 | amount | yes | Number | Example: `151.25`
-|||||
 
 ## **Examples**
 For the following examples, we'll use a simple JSON object
