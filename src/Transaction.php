@@ -14,7 +14,7 @@ class Transaction
 {
     const TRANSACTION_TYPE = 'authCaptureTransaction';
 
-    private $details;
+    public $details;
     private $merchantAuthentication;
     private $refId;
     private $creditCard;
@@ -25,10 +25,12 @@ class Transaction
     {
         $this->details = new TransactionDetails($details);
 
-        $this->setMerchantDetails();
-        $this->setRefId();
-        $this->setCreditCard();
-        $this->setTransactionRequestType();
+        if ($this->details->validate()) {
+            $this->setMerchantDetails();
+            $this->setRefId();
+            $this->setCreditCard();
+            $this->setTransactionRequestType();
+        }
     }
 
     /**
@@ -93,8 +95,8 @@ class Transaction
     private function setCreditCard(): void
     {
         $this->creditCard = new CreditCardType();
-        $this->creditCard->setCardNumber($this->details['cardNumber']);
-        $this->creditCard->setExpirationDate($this->details['expirationDate']);
+        $this->creditCard->setCardNumber($this->details->cardNumber);
+        $this->creditCard->setExpirationDate($this->details->expirationDate);
         $this->payment = new PaymentType();
         $this->payment->setCreditCard($this->creditCard);
     }
@@ -108,7 +110,7 @@ class Transaction
     {
         $this->transactionRequestType = new TransactionRequestType();
         $this->transactionRequestType->setTransactionType(self::TRANSACTION_TYPE);
-        $this->transactionRequestType->setAmount($this->details['amount']);
+        $this->transactionRequestType->setAmount($this->details->amount);
         $this->transactionRequestType->setPayment($this->payment);
     }
 }
