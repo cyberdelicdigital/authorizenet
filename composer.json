@@ -17,5 +17,8 @@
             "name": "Daron Adkins",
             "email": "daron.adkins@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^8"
+    }
 }
