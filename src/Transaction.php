@@ -5,9 +5,10 @@ use net\authorize\api\contract\v1\PaymentType;
 use net\authorize\api\constants\ANetEnvironment;
 use net\authorize\api\contract\v1\CreditCardType;
 use net\authorize\api\contract\v1\TransactionRequestType;
-use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\contract\v1\CreateTransactionRequest;
+use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
+use CyberdelicDigital\AuthorizeNet\Exceptions\MissingCredentialsException;
 
 class Transaction
 {
@@ -22,7 +23,7 @@ class Transaction
 
     public function __construct(string $details)
     {
-        $this->details = json_decode($details, true);
+        $this->details = new TransactionDetails($details);
 
         $this->setMerchantDetails();
         $this->setRefId();
@@ -30,6 +31,11 @@ class Transaction
         $this->setTransactionRequestType();
     }
 
+    /**
+     * Execute the transaction with the supplied data
+     *
+     * @return void
+     */
     public function execute()
     {
         $request = new CreateTransactionRequest();
@@ -51,6 +57,7 @@ class Transaction
             echo  'Charge Credit Card Null response returned';
         }
     }
+
     /**
      * Common setup for API credentials
      *
@@ -58,6 +65,11 @@ class Transaction
      */
     private function setMerchantDetails(): void
     {
+        $validCredentials = (defined('AUTHORIZENET_LOGIN_ID') && defined('AUTHORIZENET_TRANSACTION_KEY'));
+
+        if (! $validCredentials) {
+            throw new MissingCredentialsException('Proper Authorize.Net credentials were not found in your project.');
+        }
         $this->merchantAuthentication = new MerchantAuthenticationType();
         $this->merchantAuthentication->setName(AUTHORIZENET_LOGIN_ID);
         $this->merchantAuthentication->setTransactionKey(AUTHORIZENET_TRANSACTION_KEY);
