@@ -3,6 +3,7 @@
 use PHPUnit\Framework\TestCase;
 use CyberdelicDigital\AuthorizeNet\Transaction;
 use CyberdelicDigital\AuthorizeNet\TransactionDetails;
+use CyberdelicDigital\AuthorizeNet\Exceptions\InvalidPaymentDetailsException;
 
 final class ValidationTest extends TestCase
 {
@@ -41,7 +42,7 @@ final class ValidationTest extends TestCase
         $transaction = new Transaction(json_encode($this->deets));
         $this->assertTrue($transaction->details->validate());
 
+        $this->expectException(InvalidPaymentDetailsException::class);
         $transaction = new Transaction(json_encode($this->invalidDeets));
-        $this->assertFalse($transaction->details->validate());
     }
 }

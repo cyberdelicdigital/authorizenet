@@ -1,6 +1,6 @@
 <?php
 namespace CyberdelicDigital\AuthorizeNet\Exceptions;
 
-class MissingCredentialsException extends \Exception
+class InvalidPaymentDetailsException extends \Exception
 {
 }

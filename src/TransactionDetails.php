@@ -21,6 +21,8 @@ class TransactionDetails
 
     public function validate()
     {
-        return (array_intersect(self::REQUIRED_KEYS, array_keys(get_object_vars($this))) === self::REQUIRED_KEYS);
+        return (
+            array_intersect(self::REQUIRED_KEYS, array_keys(get_object_vars($this))) === self::REQUIRED_KEYS
+        );
     }
 }

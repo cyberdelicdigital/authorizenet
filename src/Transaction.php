@@ -9,6 +9,7 @@ use net\authorize\api\contract\v1\CreateTransactionRequest;
 use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
 use CyberdelicDigital\AuthorizeNet\Exceptions\MissingCredentialsException;
+use CyberdelicDigital\AuthorizeNet\Exceptions\InvalidPaymentDetailsException;
 
 class Transaction
 {
@@ -30,6 +31,12 @@ class Transaction
             $this->setRefId();
             $this->setCreditCard();
             $this->setTransactionRequestType();
+        } else {
+            $requiredKeys = array_map(function ($key) {
+                return $key . ', ';
+            }, TransactionDetails::REQUIRED_KEYS);
+            $message = sprintf("Invalid payment details supplied. Required keys are: %s", substr(implode($requiredKeys), 0, -2));
+            throw new InvalidPaymentDetailsException($message);
         }
     }
 
