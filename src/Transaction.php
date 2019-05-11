@@ -16,17 +16,25 @@ class Transaction
     const TRANSACTION_TYPE = 'authCaptureTransaction';
 
     public $details;
+    public $isValid = false;
     private $merchantAuthentication;
     private $refId;
     private $creditCard;
     private $payment;
     private $transactionRequestType;
 
-    public function __construct(string $details)
+    /**
+     * Class Constructor
+     *
+     * @param string $details
+     * @param array $rules
+     */
+    public function __construct(string $details, array $rules = [])
     {
         $this->details = new TransactionDetails($details);
+        $this->validator = new Validator($rules);
 
-        if ($this->details->validate()) {
+        if ($this->isValid = $this->validator->validate($this->details)) {
             $this->setMerchantDetails();
             $this->setRefId();
             $this->setCreditCard();
@@ -34,7 +42,7 @@ class Transaction
         } else {
             $requiredKeys = array_map(function ($key) {
                 return $key . ', ';
-            }, TransactionDetails::REQUIRED_KEYS);
+            }, $this->validator->requiredKeys);
             $message = sprintf("Invalid payment details supplied. Required keys are: %s", substr(implode($requiredKeys), 0, -2));
             throw new InvalidPaymentDetailsException($message);
         }
