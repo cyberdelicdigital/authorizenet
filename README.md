@@ -32,7 +32,7 @@ This package accepts a payload of structured data (JSON) and returns the respons
 | amount | yes | Number | Example: `151.25`
 
 ## **Examples**
-For the following examples, we'll use a simple JSON object
+For the following example, we'll use a simple JSON object consisting of only the minimum required fields to complete the transaction.
 ```json
 {
     "cardNumber": "4111111111111111",
@@ -43,9 +43,11 @@ For the following examples, we'll use a simple JSON object
 ```
 
 ```php
+use CyberdelicDigital\AuthorizeNet\Transaction;
+
 public function chargeCard($details)
 {
-    $transaction = new CyberdelicDigital\AuthorizeNet\Transaction($details);
+    $transaction = new Transaction($details);
 
     $response = $transaction->execute();
 
@@ -57,5 +59,18 @@ public function chargeCard($details)
 }
 ```
 
+## **Custom Validation Rules**
+In addition to the JSON data passed into the `Transaction` class, you can also pass a second parameter consisting of an array of any additional custom fields you need to be required.
+
+>**Note**: You do not need to specify the minimum required fields listed in the chart above. They will always be required for a valid transaction.
+
+```php
+$requiredFields = ['field_1', 'field_2'];
+
+$transaction = new Transaction($details, $requiredFields);
+```
+
+## **Transaction Response**
+Calling the `execute` method on the transaction object will return an instance of `CyberdelicDigital\AuthorizeNet\TransactionResponse`.
 
 
