@@ -1,10 +1,10 @@
 # Authorize.Net Transactions for PHP
 A simple wrapper for the Authorize.Net PHP SDK
 
-## **Installation**
+## Installation
     composer require CyberdelicDigital/authorizenet
 
-## **Environment/Global Variables**
+## Environment/Global Variables
 #### Required
 Login ID from your Authorize.Net Merchant Dashboard
 
@@ -20,10 +20,10 @@ Relative path to the file where you would like to keep transaction logs (for deb
 
     define('AUTHORIZENET_LOG_FILE', 'authorizenet_log');
 
-## **Usage**
+## Usage
 This package accepts a payload of structured data (JSON) and returns the response from Authorize.Net
 
-### **Parameters**
+### Parameters
 | Key | Required | Type | Notes |
 |-----|----------|------|-------|
 | cardNumber | yes | String |
@@ -31,7 +31,7 @@ This package accepts a payload of structured data (JSON) and returns the respons
 | cardCode | yes | String | Also known as CVV
 | amount | yes | Number | Example: `151.25`
 
-## **Examples**
+## Examples
 For the following example, we'll use a simple JSON object consisting of only the minimum required fields to complete the transaction.
 ```json
 {
@@ -59,10 +59,10 @@ public function chargeCard($details)
 }
 ```
 
-## **Custom Validation Rules**
+## Custom Validation Rules
 In addition to the JSON data passed into the `Transaction` class, you can also pass a second parameter consisting of an array of any additional custom fields you need to be required.
 
->**Note**: You do not need to specify the minimum required fields listed in the chart above. They will always be required for a valid transaction.
+>**Note**: You do not need to specify the required fields listed in the chart above. They will always be required for a valid transaction.
 
 ```php
 $requiredFields = ['field_1', 'field_2'];
@@ -70,7 +70,7 @@ $requiredFields = ['field_1', 'field_2'];
 $transaction = new Transaction($details, $requiredFields);
 ```
 
-## **Transaction Response**
+## Transaction Response
 Calling the `execute` method on the transaction object will return an instance of `CyberdelicDigital\AuthorizeNet\TransactionResponse`.
 
 
