@@ -1,3 +1,4 @@
 go.php
 phplog
 tests/bootstrap.php
+*.cache
