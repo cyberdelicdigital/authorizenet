@@ -10,6 +10,7 @@ use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
 use CyberdelicDigital\AuthorizeNet\Exceptions\MissingCredentialsException;
 use CyberdelicDigital\AuthorizeNet\Exceptions\InvalidPaymentDetailsException;
+use CyberdelicDigital\AuthorizeNet\Exceptions\NullResponseException;
 
 class Transaction
 {
@@ -63,15 +64,11 @@ class Transaction
         $response = $controller->executeWithApiResponse(ANetEnvironment::SANDBOX);
 
         if ($response != null) {
-            $tresponse = $response->getTransactionResponse();
-            if (($tresponse != null) && ($tresponse->getResponseCode() == '1')) {
-                echo 'Charge Credit Card AUTH CODE : '.$tresponse->getAuthCode()."\n";
-                echo 'Charge Credit Card TRANS ID  : '.$tresponse->getTransId()."\n";
-            } else {
-                echo "Charge Credit Card ERROR :  Invalid response\n";
-            }
+            $transactionResponse = $response->getTransactionResponse();
+                return new TransactionResponse(json_encode($transactionResponse));
         } else {
-            echo  'Charge Credit Card Null response returned';
+            $message = sprintf("Null Response returned from Authorize.Net API");
+            throw new NullResponseException($message);
         }
     }
 
