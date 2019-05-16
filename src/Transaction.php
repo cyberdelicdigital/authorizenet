@@ -8,9 +8,9 @@ use net\authorize\api\contract\v1\TransactionRequestType;
 use net\authorize\api\contract\v1\CreateTransactionRequest;
 use net\authorize\api\contract\v1\MerchantAuthenticationType;
 use net\authorize\api\controller\CreateTransactionController;
+use CyberdelicDigital\AuthorizeNet\Exceptions\NullResponseException;
 use CyberdelicDigital\AuthorizeNet\Exceptions\MissingCredentialsException;
 use CyberdelicDigital\AuthorizeNet\Exceptions\InvalidPaymentDetailsException;
-use CyberdelicDigital\AuthorizeNet\Exceptions\NullResponseException;
 
 class Transaction
 {

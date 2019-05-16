@@ -26,7 +26,7 @@ class TransactionResponse
     }
 
     /**
-     * Retrieve Errors from the object if they exist
+     * Retrieve errors from the object if they exist
      *
      * @return array
      */
