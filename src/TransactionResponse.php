@@ -24,4 +24,14 @@ class TransactionResponse
     {
         return property_exists($this, 'errors');
     }
+
+    /**
+     * Retrieve Errors from the object if they exist
+     *
+     * @return array
+     */
+    public function getErrors(): array
+    {
+        return $this->hasErrors() ? $this->errors : [];
+    }
 }
