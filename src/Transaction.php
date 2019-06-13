@@ -11,6 +11,8 @@ use net\authorize\api\controller\CreateTransactionController;
 use CyberdelicDigital\AuthorizeNet\Exceptions\NullResponseException;
 use CyberdelicDigital\AuthorizeNet\Exceptions\MissingCredentialsException;
 use CyberdelicDigital\AuthorizeNet\Exceptions\InvalidPaymentDetailsException;
+use net\authorize\api\contract\v1\CustomerAddressType;
+use net\authorize\api\contract\v1\CustomerDataType;
 
 class Transaction
 {
@@ -23,6 +25,7 @@ class Transaction
     private $creditCard;
     private $payment;
     private $transactionRequestType;
+    private $billingAddress;
 
     /**
      * Class Constructor
@@ -124,5 +127,29 @@ class Transaction
         $this->transactionRequestType->setTransactionType(self::TRANSACTION_TYPE);
         $this->transactionRequestType->setAmount($this->details->amount);
         $this->transactionRequestType->setPayment($this->payment);
+        $this->transactionRequestType->setBillTo($this->setBillingAddress());
+        $this->transactionRequestType->setCustomer($this->setEmail());
+    }
+
+    private function setBillingAddress()
+    {
+        $customerAddress = new CustomerAddressType();
+        $customerAddress->setFirstName($this->details->customer->firstName);
+        $customerAddress->setLastName($this->details->customer->lastName);
+        $customerAddress->setAddress($this->details->customer->street);
+        $customerAddress->setCity($this->details->customer->city);
+        $customerAddress->setState($this->details->customer->state);
+        $customerAddress->setZip($this->details->customer->zip);
+        $customerAddress->setCountry($this->details->customer->country);
+
+        return $customerAddress;
+    }
+
+    private function setEmail()
+    {
+        $customerData = new CustomerDataType();
+        $customerData->setEmail($this->details->customer->customerEmail);
+
+        return $customerData;
     }
 }

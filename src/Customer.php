@@ -20,11 +20,8 @@ class Customer
     public function __construct(string $details)
     {
         foreach (json_decode($details, true) as $key => $value) {
-            $this->{$key} = $value;
+            $this->$key = $value;
         }
-
-        $this->setBillingAddress();
-        $this->setEmail();
     }
 
     private function setBillingAddress()

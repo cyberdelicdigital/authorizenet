@@ -21,7 +21,6 @@ final class TransactionTest extends TestCase
             'customer' => [
                 'firstName' => 'Joe',
                 'lastName' => 'Testerson',
-                'company' => 'ACME Inc.',
                 'street' => '123 Example Street',
                 'city' => 'Hollywood',
                 'state' => 'CA',
@@ -38,7 +37,6 @@ final class TransactionTest extends TestCase
             'customer' => [
                 'firstName' => 'Joe',
                 'lastName' => 'Testerson',
-                'company' => 'ACME Inc.',
                 'street' => '123 Example Street',
                 'city' => 'Hollywood',
                 'state' => 'CA',
