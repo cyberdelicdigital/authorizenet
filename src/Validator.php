@@ -7,7 +7,8 @@ class Validator
         'cardNumber',
         'expirationDate',
         'cardCode',
-        'amount'
+        'amount',
+        'customer'
     ];
 
     protected $rules;

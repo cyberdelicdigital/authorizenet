@@ -17,24 +17,38 @@ final class ValidationTest extends TestCase
             'cardNumber' => '4111111111111111',
             'expirationDate' => '2038-12',
             'cardCode' => '123',
-            'amount' => 151.25
+            'amount' => 151.25,
+            'customer' => [
+                'firstName' => 'Joe',
+                'lastName' => 'Testerson',
+                'company' => 'ACME Inc.',
+                'street' => '123 Example Street',
+                'city' => 'Hollywood',
+                'state' => 'CA',
+                'zip' => '90210',
+                'country' => 'USA',
+                'email' => 'joe@testerson.com'
+            ]
         ];
 
         $this->invalidDeets = [
             'expirationDate' => '2038-12',
             'cardCode' => '123',
-            'amount' => 151.25
+            'amount' => 151.25,
+            'customer' => [
+                'firstName' => 'Joe',
+                'lastName' => 'Testerson',
+                'company' => 'ACME Inc.',
+                'street' => '123 Example Street',
+                'city' => 'Hollywood',
+                'state' => 'CA',
+                'zip' => '90210',
+                'country' => 'USA',
+                'email' => 'joe@testerson.com'
+            ]
         ];
 
         parent::setUp();
-    }
-
-    /** @test */
-    public function it_creates_a_detail_object()
-    {
-        $transaction = new Transaction(json_encode($this->deets));
-
-        $this->assertInstanceOf(TransactionDetails::class, $transaction->details);
     }
 
     /** @test */
