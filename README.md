@@ -40,16 +40,16 @@ For the following example, we'll use a simple JSON object consisting of only the
     "expirationDate": "2038-12",
     "cardCode": "123",
     "amount": 151.25,
-    "customer" => {
-        "firstName" => "Joe",
-        "lastName" => "Testerson",
-        "company" => "ACME Inc.",
-        "street" => "123 Example Street",
-        "city" => "Hollywood",
-        "state" => "CA",
-        "zip" => "90210",
-        "country" => "USA",
-        "email" => "joe@testerson.com"
+    "customer": {
+        "firstName": "Joe",
+        "lastName": "Testerson",
+        "company": "ACME Inc.",
+        "street": "123 Example Street",
+        "city": "Hollywood",
+        "state": "CA",
+        "zip": "90210",
+        "country": "USA",
+        "email": "joe@testerson.com"
     }
 }
 ```
