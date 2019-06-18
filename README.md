@@ -30,6 +30,7 @@ This package accepts a payload of structured data (JSON) and returns the respons
 | expirationDate | yes | String | Format: `YYYY-mm`
 | cardCode | yes | String | Also known as CVV
 | amount | yes | Number | Example: `151.25`
+| customer | yes | object | Contains neccessary information for the customer. See details below
 
 ## Examples
 For the following example, we'll use a simple JSON object consisting of only the minimum required fields to complete the transaction.
@@ -38,7 +39,18 @@ For the following example, we'll use a simple JSON object consisting of only the
     "cardNumber": "4111111111111111",
     "expirationDate": "2038-12",
     "cardCode": "123",
-    "amount": 151.25
+    "amount": 151.25,
+    "customer" => {
+        "firstName" => "Joe",
+        "lastName" => "Testerson",
+        "company" => "ACME Inc.",
+        "street" => "123 Example Street",
+        "city" => "Hollywood",
+        "state" => "CA",
+        "zip" => "90210",
+        "country" => "USA",
+        "email" => "joe@testerson.com"
+    }
 }
 ```
 
@@ -69,8 +81,4 @@ $requiredFields = ['field_1', 'field_2'];
 
 $transaction = new Transaction($details, $requiredFields);
 ```
-
-## Transaction Response
-Calling the `execute` method on the transaction object will return an instance of `CyberdelicDigital\AuthorizeNet\TransactionResponse`.
-
 
