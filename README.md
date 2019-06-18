@@ -2,7 +2,7 @@
 A simple wrapper for the Authorize.Net PHP SDK
 
 ## Installation
-    composer require CyberdelicDigital/authorizenet
+    composer require doomtickle/authorizenet
 
 ## Environment/Global Variables
 #### Required
