@@ -43,7 +43,6 @@ For the following example, we'll use a simple JSON object consisting of only the
     "customer": {
         "firstName": "Joe",
         "lastName": "Testerson",
-        "company": "ACME Inc.",
         "street": "123 Example Street",
         "city": "Hollywood",
         "state": "CA",
