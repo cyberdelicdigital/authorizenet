@@ -64,7 +64,7 @@ class Transaction
         $request->setRefId($this->refId);
         $request->setTransactionRequest($this->transactionRequestType);
         $controller = new CreateTransactionController($request);
-        $response = $controller->executeWithApiResponse(ANetEnvironment::SANDBOX);
+        $response = $controller->executeWithApiResponse(ANET_ENVIRONMENT);
 
         if ($response != null) {
             $transactionResponse = $response->getTransactionResponse();
