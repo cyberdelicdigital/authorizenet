@@ -13,6 +13,9 @@ use CyberdelicDigital\AuthorizeNet\Exceptions\MissingCredentialsException;
 use CyberdelicDigital\AuthorizeNet\Exceptions\InvalidPaymentDetailsException;
 use net\authorize\api\contract\v1\CustomerAddressType;
 use net\authorize\api\contract\v1\CustomerDataType;
+use CyberdelicDigital\AuthorizeNet\Exceptions\InvalidTransactionException;
+use net\authorize\api\contract\v1\UserFieldType;
+use net\authorize\api\contract\v1\OrderType;
 
 class Transaction
 {
@@ -25,7 +28,6 @@ class Transaction
     private $creditCard;
     private $payment;
     private $transactionRequestType;
-    private $billingAddress;
 
     /**
      * Class Constructor
@@ -47,9 +49,66 @@ class Transaction
             $requiredKeys = array_map(function ($key) {
                 return $key . ', ';
             }, $this->validator->requiredKeys);
-            $message = sprintf("Invalid payment details supplied. Required keys are: %s", substr(implode($requiredKeys), 0, -2));
+            $message = sprintf(
+                "Invalid payment details supplied. Required keys are: %s", substr(implode($requiredKeys), 0, -2)
+            );
             throw new InvalidPaymentDetailsException($message);
         }
+    }
+
+    /**
+     * Add custom fields to the request type
+     *
+     * @param array $fields
+     *
+     * @return Transaction
+     */
+    public function addCustomFields(array $fields)
+    {
+        if (! $this->isValid) {
+            throw new InvalidTransactionException('The transaction is not valid and cannot add your custom field');
+        }
+        foreach ($fields as $key => $value) {
+            if (is_array($value)) {
+                $this->addCustomField($value);
+            }
+
+            $customField = new UserFieldType();
+            $customField->setName($key);
+            $customField->setValue($value);
+
+            $this->transactionRequestType->addToUserFields($customField);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add invoice number and description to order
+     *
+     * @param string $invoiceNumber
+     * @param string $description
+     *
+     * @return Transaction
+     */
+    public function addOrderDetails(string $invoiceNumber = null, string $description = null)
+    {
+        if (! $this->isValid) {
+            throw new InvalidTransactionException('The transaction is not valid and cannot add your order details');
+        }
+
+        $order = new OrderType();
+        if ($invoiceNumber) {
+            $order->setInvoiceNumber($invoiceNumber);
+        }
+
+        if ($description) {
+            $order->setDescription($description);
+        }
+
+        $this->transactionRequestType->setOrder($order);
+
+        return $this;
     }
 
     /**
