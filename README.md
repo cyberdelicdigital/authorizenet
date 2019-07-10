@@ -1,6 +1,8 @@
 # Authorize.Net Transactions for PHP
 A simple wrapper for the Authorize.Net PHP SDK
 
+* Docs are still WIP
+
 ## Installation
     composer require doomtickle/authorizenet
 
