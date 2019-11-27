@@ -23,26 +23,4 @@ class Customer
             $this->$key = $value;
         }
     }
-
-    private function setBillingAddress()
-    {
-        $customerAddress = new CustomerAddressType();
-        $customerAddress->setFirstName($this->firstName);
-        $customerAddress->setLastName($this->lastName);
-        $customerAddress->setAddress($this->street);
-        $customerAddress->setCity($this->city);
-        $customerAddress->setState($this->state);
-        $customerAddress->setZip($this->zip);
-        $customerAddress->setCountry($this->country);
-
-        $this->billingAddress = $customerAddress;
-    }
-
-    private function setEmail()
-    {
-        $customerData = new CustomerDataType();
-        $customerData->setEmail($this->email);
-
-        $this->customerEmail = $customerData;
-    }
 }
