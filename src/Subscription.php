@@ -145,11 +145,11 @@ class Subscription
     private function handleSubscription()
     {
         $subscription = new ARBSubscriptionType();
-        $subscription->setName("UMHEF Donation Subscription");
+        $subscription->setName($this->details->need);
 
         $interval = new IntervalAType();
-        $interval->setLength(30);
-        $interval->setUnit("days");
+        $interval->setLength(1);
+        $interval->setUnit("months");
 
         $paymentSchedule = new PaymentScheduleType();
         $paymentSchedule->setInterval($interval);
