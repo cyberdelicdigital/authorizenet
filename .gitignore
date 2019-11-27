@@ -4,3 +4,4 @@ tests/bootstrap.php
 *.cache
 valid.json
 invalid.json
+authorizenet_log

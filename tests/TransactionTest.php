@@ -25,7 +25,7 @@ final class TransactionTest extends TestCase
                 'city' => 'Hollywood',
                 'state' => 'CA',
                 'zip' => '90210',
-                'country' => 'USA',
+               'country' => 'USA',
                 'email' => 'joe@testerson.com'
             ]
         ];
