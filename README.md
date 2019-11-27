@@ -10,15 +10,15 @@ A simple wrapper for the Authorize.Net PHP SDK
 #### Required
 Login ID from your Authorize.Net Merchant Dashboard
 
-    `define('AUTHORIZENET_LOGIN_ID', 'YOUR_LOGIN_ID');`
+    define('AUTHORIZENET_LOGIN_ID', 'YOUR_LOGIN_ID');
 
 Transaction Key from your Authorize.Net Merchant Dashboard
 
-    `define('AUTHORIZENET_TRANSACTION_KEY', 'YOUR_TRANSACTION_KEY');`
+    define('AUTHORIZENET_TRANSACTION_KEY', 'YOUR_TRANSACTION_KEY');
 
 AuthorizeNet Environment (Sandbox or Production);
 
-    `define('ANET_ENVIRONMENT', 'https://apitest.authorize.net'); // Sandbox`
+    define('ANET_ENVIRONMENT', 'https://apitest.authorize.net'); // Sandbox
 Or
     `define('ANET_ENVIRONMENT', 'https://api2.authorize.net'); // Production`
 
