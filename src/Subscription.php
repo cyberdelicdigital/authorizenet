@@ -128,7 +128,7 @@ class Subscription
         $request = new ARBCreateSubscriptionRequest();
         $request->setMerchantAuthentication($this->merchantAuthentication);
         $request->setRefId($this->refId);
-        die(var_dump($this->subscription));
+        // die(var_dump($this->subscription));
         $request->setSubscription($this->subscription);
         $controller = new ARBCreateSubscriptionController($request);
         $response = $controller->executeWithApiResponse(ANET_ENVIRONMENT);
